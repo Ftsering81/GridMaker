@@ -30,6 +30,7 @@ function addR() {
         numRows++; //increment the number of rows
    }
 }
+
 //Add a column
 function addC() {
   //  alert("Clicked Add Col")
@@ -43,10 +44,9 @@ function addC() {
   }
   else //row is not 0
   {
-    let rows = document.getElementsByTagName("tr"); //rows is a list of elements with the given tagname in order they appear 
-    console.log(rows)
+    let rows = table.getElementsByTagName("tr"); //rows is a list of elements with the given tagname in order they appear 
 
-    //for each row in the table, add an cell for its column
+    //for each row in the table, add a cell for its column
     for (let i = 0; i < numRows; i++)
     {
         let td = document.createElement("td"); //table data cell eleemnt 
@@ -69,10 +69,46 @@ function removeR() {
         table.removeChild(last_row); // removeChild() removes the argument node from the caller parent node
         numRows--;
     }
+    //numRows is 0 when the only cell is removed, so both numRows and numCols must be 0. Call clearAll() to reset them.
+    if (numRows === 0)
+    {
+        clearAll();
+    }
 }
+
 //Remove a column
 function removeC() {
-    alert("Clicked Remove Col")
+   // alert("Clicked Remove Col")
+   let table = document.getElementById("grid"); //table is the grid
+
+//  For each row aka for each <tr> element of the table, remove the last <td> child node. //
+    if(numRows != 0 && numCols != 0) //if we don't check then numCols will be decremented even if grid is empty
+    {
+        //getElementsByTagName returns a list of elements with the given tag within the calling element
+        let rows = table.getElementsByTagName("tr"); 
+
+        for (let row of rows) //for each row in the table
+        {
+            row.removeChild(row.lastElementChild); //remove the last td cell node
+        }
+        numCols--;
+    }
+
+    /** NOTE TO SELF: 
+     * If the last remaining column/cell was removed by calling removeC(), then that means all the <td> elements were removed
+     * for that column, but the <tr> elements will still remain causing empty columns in the grid when we add new rows or
+     * columns. Example:
+     *          <tr>  </tr>
+     *          <tr>  </tr>
+     * Therefore, must remove all the <tr> tags as well from the table if removeC is called on last remaining column. 
+     */
+    // We can just call clearAll() to reset the table grid so that the empty <tr> elements are removed.
+    // clearAll() also resets numRows and numCols to 0
+    if(numCols === 0) //numCols === 0 means that the last remaining column was removed
+    {
+        clearAll();
+    }
+
 }
 //sets global var for selected color
 function selected(){
