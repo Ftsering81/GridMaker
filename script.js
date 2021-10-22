@@ -12,6 +12,12 @@ function addR() {
    if (numRows === 0)
    {
         let cell = document.createElement("td"); //create a table data cell element
+        
+        //change the cell's color to colorSelected on click
+        cell.onclick = function () {
+            cell.style.background = colorSelected;
+        }
+
         tr.appendChild(cell); //add the cell to the row
         table.appendChild(tr); //add the row to the table(grid)
         numRows++;
@@ -24,9 +30,15 @@ function addR() {
         {
             //creates a td cell element and adds it to the row at tag tr numCols times 
             let cell = document.createElement("td"); //create a table data cell element 
-            tr.appendChild(cell); 
+            
+            //change the cell's color to colorSelected on click
+            cell.onclick = function () {
+                cell.style.background = colorSelected;
+            }
+
+            tr.appendChild(cell); //add the cell to the row
         }
-        table.appendChild(tr); //append the row to the table(grid)
+        table.appendChild(tr); //add the row to the table(grid)
         numRows++; //increment the number of rows
    }
 }
@@ -49,8 +61,12 @@ function addC() {
     //for each row in the table, add a cell for its column
     for (let i = 0; i < numRows; i++)
     {
-        let td = document.createElement("td"); //table data cell eleemnt 
-        rows[i].appendChild(td)
+        let cell = document.createElement("td"); //table data cell eleemnt 
+        //change the cell's color to colorSelected on click
+        cell.onclick = function () {
+            cell.style.background = colorSelected;
+        }
+        rows[i].appendChild(cell)
     }
     numCols++; //increment numCols
   }
@@ -181,3 +197,4 @@ function fillU(){
         }
     }
 }
+
