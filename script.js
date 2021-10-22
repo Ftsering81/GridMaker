@@ -58,7 +58,17 @@ function addC() {
 
 //Remove a row
 function removeR() {
-    alert("Clicked Remove Row")
+  //  alert("Clicked Remove Row")
+    let table = document.getElementById("grid"); //the table in the html doc
+
+    //Remove the last row aka the last tr tag or child node of the table
+    if(numRows != 0 && numCols != 0)
+    {
+        //lastElementChild property returns the last child node element of the parent node
+        let last_row = table.lastElementChild; 
+        table.removeChild(last_row); // removeChild() removes the argument node from the caller parent node
+        numRows--;
+    }
 }
 //Remove a column
 function removeC() {
