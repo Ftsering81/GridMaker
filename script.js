@@ -75,7 +75,11 @@ function fill(){
 }
 
 function clearAll(){
-    alert("Clicked Clear All")
+  //  alert("Clicked Clear All")
+    //Replace everything in the grid tag in the HTML document with empty space to get rid of the table
+    document.getElementById("grid").innerHTML = ""
+    numRows = 0;
+    numCols = 0;
 }
 
 function fillU(){
