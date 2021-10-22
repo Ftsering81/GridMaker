@@ -45,36 +45,34 @@ function addR() {
 
 //Add a column
 function addC() {
-  //  alert("Clicked Add Col")
-  let table = document.getElementById("grid");
-  let tr = document.createElement("tr"); //table row element
+    let table = document.getElementById("grid");
+    let tr = document.createElement("tr"); //table row element
 
-  //if the grid is empty meaning no rows or columns, just add a cell and increment row
-  if (numRows === 0)
-  {
-    addR(); //call addR function to add a row and column. Gives 1X1 grid
-  }
-  else //row is not 0
-  {
-    let rows = table.getElementsByTagName("tr"); //rows is a list of elements with the given tagname in order they appear 
-
-    //for each row in the table, add a cell for its column
-    for (let i = 0; i < numRows; i++)
+    //if the grid is empty meaning no rows or columns, just add a cell and increment row
+    if (numRows === 0)
     {
-        let cell = document.createElement("td"); //table data cell eleemnt 
-        //change the cell's color to colorSelected on click
-        cell.onclick = function () {
-            cell.style.background = colorSelected;
-        }
-        rows[i].appendChild(cell)
+        addR(); //call addR function to add a row and column. Gives 1X1 grid
     }
-    numCols++; //increment numCols
-  }
+    else //row is not 0
+    {
+        let rows = table.getElementsByTagName("tr"); //rows is a list of elements with the given tagname in order they appear 
+
+        //for each row in the table, add a cell for its column
+        for (let i = 0; i < numRows; i++)
+        {
+            let cell = document.createElement("td"); //table data cell eleemnt 
+            //change the cell's color to colorSelected on click
+            cell.onclick = function () {
+                cell.style.background = colorSelected;
+            }
+            rows[i].appendChild(cell)
+        }
+        numCols++; //increment numCols
+    }
 }
 
 //Remove a row
 function removeR() {
-  //  alert("Clicked Remove Row")
     let table = document.getElementById("grid"); //the table in the html doc
 
     //Remove the last row aka the last tr tag or child node of the table
@@ -154,7 +152,6 @@ function fill(){
 
 //Helper function that resets the table grid back to default settings
 function reset(){
-  //  alert("Clicked Clear All")
     //Replace everything in the grid tag in the HTML document with empty string to get rid of the table
     document.getElementById("grid").innerHTML = ""
     numRows = 0;
@@ -172,7 +169,7 @@ function clearAll(){
     {   
         cell.style.background = ''; //restore color of the cell to no color
     }
-  }
+}
 
 function fillU(){
 
