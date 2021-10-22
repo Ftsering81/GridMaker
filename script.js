@@ -69,10 +69,10 @@ function removeR() {
         table.removeChild(last_row); // removeChild() removes the argument node from the caller parent node
         numRows--;
     }
-    //numRows is 0 when the only cell is removed, so both numRows and numCols must be 0. Call clearAll() to reset them.
+    //numRows is 0 when the only cell is removed, so both numRows and numCols must be 0. Call reset()() to reset them.
     if (numRows === 0)
     {
-        clearAll();
+        reset()();
     }
 }
 
@@ -102,11 +102,11 @@ function removeC() {
      *          <tr>  </tr>
      * Therefore, must remove all the <tr> tags as well from the table if removeC is called on last remaining column. 
      */
-    // We can just call clearAll() to reset the table grid so that the empty <tr> elements are removed.
-    // clearAll() also resets numRows and numCols to 0
+    // We can just call reset()() to reset the table grid so that the empty <tr> elements are removed.
+    // reset() also resets numRows and numCols to 0
     if(numCols === 0) //numCols === 0 means that the last remaining column was removed
     {
-        clearAll();
+        reset()();
     }
 
 }
@@ -136,8 +136,8 @@ function fill(){
 
 }
 
-//resets grid back to default settings
-function clearAll(){
+//Helper function that resets the table grid back to default settings
+function reset(){
   //  alert("Clicked Clear All")
     //Replace everything in the grid tag in the HTML document with empty string to get rid of the table
     document.getElementById("grid").innerHTML = ""
@@ -145,6 +145,39 @@ function clearAll(){
     numCols = 0;
 }
 
+//Clear the colors from all the cells and reset their color to no color
+function clearAll(){
+    let table = document.getElementById("grid"); //table is the grid
+
+    // cells = a list of all the <td> elements or cells in the table inside the tr elements.
+    let cells = table.getElementsByTagName("td");
+
+    for (let cell of cells) 
+    {   
+        cell.style.background = ''; //restore color of the cell to no color
+    }
+  }
+
 function fillU(){
-    alert("Clicked Fill All Uncolored")
+
+    if(colorSelected == null)
+    {
+        alert("Please select a color")
+    }
+    let table = document.getElementById("grid"); //table is the grid
+
+    // cells = a list of all the <td> elements or cells in the table inside the tr elements.
+    let cells = table.getElementsByTagName("td");
+
+    //Iterate through each <td> element (cell) of the table and change the color of each cell 
+    // to colorSelected only if their current background color is empty value
+    for (let cell of cells) 
+    {   
+        //Our CSS sheet doesn't provide a value for background for the <td> elements. 
+        // Thus, the cells that are uncolored are the ones with empty string for its background property.
+        if(cell.style.background === '')
+        {
+            cell.style.background = colorSelected; //set color of the uncolored cell to colorSelected
+        }
+    }
 }
