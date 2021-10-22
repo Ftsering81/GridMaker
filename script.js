@@ -110,16 +110,33 @@ function removeC() {
     }
 
 }
+
 //sets global var for selected color
 function selected(){
     colorSelected = document.getElementById("selectedID").value;
     console.log(colorSelected);
 }
 
+//Fill all the cells of the table with same color
 function fill(){
-    alert("Clicked Fill All")
+
+    if(colorSelected == null)
+    {
+        alert("Please select a color")
+    }
+    let table = document.getElementById("grid"); //table is the grid
+
+    // cells = a list of all the <td> elements or cells in the table inside the tr elements.
+    let cells = table.getElementsByTagName("td");
+
+    for (let cell of cells) //iterates through each <td> element (cell) of the table
+    {   // and changes the color of each cell to colorSelected
+        cell.style.background = colorSelected;
+    }
+
 }
 
+//resets grid back to default settings
 function clearAll(){
   //  alert("Clicked Clear All")
     //Replace everything in the grid tag in the HTML document with empty string to get rid of the table
