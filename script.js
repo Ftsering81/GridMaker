@@ -32,7 +32,28 @@ function addR() {
 }
 //Add a column
 function addC() {
-    alert("Clicked Add Col")
+    //  alert("Clicked Add Col")
+    let table = document.getElementById("grid");
+    let tr = document.createElement("tr"); //table row element
+
+    //if the grid is empty meaning no rows or columns, just add a cell and increment row
+    if (numRows === 0)
+    {
+        addR(); //call addR function to add a row and column. Gives 1X1 grid
+    }
+    else //row is not 0
+    {
+        let rows = document.getElementsByTagName("tr"); //rows is a list of elements with the given tagname in order they appear 
+        console.log(rows)
+
+        //for each row, add a cell to its column
+        for (let i = 0; i < numRows; i++)
+        {
+            let td = document.createElement("td"); //table data cell eleemnt 
+            rows[i].appendChild(td);
+        }
+    }
+    numCols++; //increment numCols
 }
 
 //Remove a row
